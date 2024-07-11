@@ -36,11 +36,18 @@
     name: sos
     state: present
 
-- name: "Reset the idm module state"
-  ansible.builtin.command: "dnf -y module reset idm"
+- name: "Install IDM packages" # IdM have been de-modulized on RHEL9
+  ansible.builtin.dnf:
+    name:
+      - ipa-server
+      - ipa-server-trust-ad
+      - samba-client
+    state: present
+    allowerasing: true
+    update_cache: true
 
-- name: "Enable the idm module"
-  ansible.builtin.command: "dnf -y module enable idm:DL1"
+# - name: "Enable the idm module"
+#   ansible.builtin.command: "dnf -y module enable idm:DL1"
 
-- name: "Install the server modules"
-  ansible.builtin.shell: "dnf -y module install idm:DL1/{client,common,server,dns,adtrust}"
+# - name: "Install the server modules"
+#   ansible.builtin.shell: "dnf -y module install idm:DL1/{client,common,server,dns,adtrust}"
