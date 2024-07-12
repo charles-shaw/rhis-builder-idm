@@ -15,16 +15,16 @@ rhis-builder-idm makes the following changes to a system installed with an @Base
 
 ### Deploying an RHIS Satellite environment.
 
-As of this build, we do not deploy Capsule Servers. Coming Soon! TM
+As of this build, we do not deploy IdM Replica Servers. Coming Soon! TM
 
 Clone the repo to your provisioning server.
 
-Set sat_primary in the inventory to the FQDN of a @Base RHEL 8 build system (virtual, physical or prepared cloud image (non-RHUI)). 
+Set idm_primary in the inventory to the FQDN of a @Base RHEL 8 build system (virtual, physical or prepared cloud image (non-RHUI)). 
 
-Create a directory with for the FQDN of the sat_primary server under the host_vars directory. 
-(e.g. rhis-builder-satellite/host_vars/rhissat.mydomain.com)
+Create a directory with for the FQDN of the idm_primary server under the host_vars directory. 
+(e.g. rhis-builder-idm/host_vars/idm1.mydomain.com)
 
-Copy the contents of the sat.example.ca directory in host_vars to the sat_primary directory in host_vars in the previous step.
+Copy the contents of the idm.example.ca directory in host_vars to the idm_primary directory in host_vars in the previous step.
 
 Update the variables to suit your configuration.
 
@@ -48,4 +48,4 @@ Run the main.yml playbook using your favourite ansible environment referencing y
 ```
 ansible-playbook -i inventory main.yml --vault-password-file=/home/parmstro/.ansible/vault.txt
 ```
-Wait a few hours depending on your pipe to the Red Hat CDN and horsepower of your system. They you will be able to log in to your Satellite.
+Wait a few hours depending on your pipe to the Red Hat CDN and horsepower of your system. They you will be able to log in to your IdM server.
